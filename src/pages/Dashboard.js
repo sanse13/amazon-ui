@@ -1,11 +1,7 @@
 import Toolbar from "../components/Toolbar/Toolbar";
-
 const Dashboard = () => {
-  return (
-    <div>
-      <Toolbar />
-    </div>
-  );
+  let userLoggedIn = localStorage.getItem("userLoggedIn");
+  return <div>{userLoggedIn && <Toolbar />}</div>;
 };
 
 export default Dashboard;

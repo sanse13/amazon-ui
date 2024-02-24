@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
 
+const changeUserLoggedStatus = status => {
+  localStorage.setItem('userLoggedIn', status);
+}
+
 const Login = () => {
+  const setUserLoggedIn = () => {
+    localStorage.setItem("userLoggedIn", true);
+  };
+
+  changeUserLoggedStatus(false);
+
   return (
     <div className="flex flex-col items-center justify-center">
       <img
@@ -13,7 +23,7 @@ const Login = () => {
           <h1 className="text-xl pt-4 mb-2 text-left">Iniciar sesión</h1>
           <div>
             <label
-              for="email-input"
+              htmlFor="email-input"
               className="font-bold text-xs text-left block mb-2"
             >
               Direccion de e-mail o numero de telefono movil
@@ -28,6 +38,7 @@ const Login = () => {
             <button
               type="button"
               className="rounded-lg w-full shadow border mb-4 border-gray-100 bg-yellow-300 hover:bg-yellow-500 px-2 py-1 mt-2 text-sm"
+              onClick={setUserLoggedIn}
             >
               Continuar
             </button>
