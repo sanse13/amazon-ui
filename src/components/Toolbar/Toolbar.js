@@ -1,30 +1,26 @@
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 const Toolbar = () => {
   return (
     <>
       <nav class="border-gray-200 bg-black">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <img src="amazon-white-logo.webp" alt="amazon logo" className="h-8 w-22 flex flex-wrap justify-between absolute left-0" />
           <div
             class="items-center justify-between hidden w-full md:flex md:w-auto"
             id="navbar-search"
           >
-            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 bg-black">
+            <ul class="flex flex-col md:p-0 mt-4 ml-10 font-medium md:space-x-2 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 bg-black">
               <li>
-                <span class="block hover:cursor-pointer py-2 px-3 text-white md:bg-transparent md:text-blue-700 md:p-0">
-                  Home
-                </span>
+                <FontAwesomeIcon className="text-white" icon={faLocationDot} />
               </li>
               <li>
-                <span class="block hover:cursor-pointer py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 md:hover:text-blue-700 text-white">
-                  About
-                </span>
-              </li>
-              <li>
-                <span class="block hover:cursor-pointer py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 text-white">
-                  Services
-                </span>
+                <div className="flex flex-col justify-between">
+                  <span class="text-gray-300 text-xs">Enviar a Adrian</span>
+                  <span className="text-white text-sm">Vitoria-G...</span>
+                </div>
               </li>
             </ul>
           </div>
