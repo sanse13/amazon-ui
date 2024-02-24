@@ -1,11 +1,16 @@
+import { Link } from "react-router-dom";
+
 const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="border rounded-lg content-center w-[21rem] mt-8 p-5">
+      <img
+        src="amazon-entire-logo.png"
+        alt="Amazon logo"
+        className="w-28 h-10 mt-4"
+      />
+      <div className="border rounded-lg content-center w-[21rem] mt-4 p-5">
         <div className="text-center">
-          <h1 className="text-xl font-bold pt-4 mb-2 text-left">
-            Iniciar sesión
-          </h1>
+          <h1 className="text-xl pt-4 mb-2 text-left">Iniciar sesión</h1>
           <div>
             <label
               for="email-input"
@@ -16,15 +21,17 @@ const Login = () => {
             <input
               id="email-input"
               className="border bg-gray-50 border-gray-400 focus:border-blue-300 px-2.5 py-1 w-full text-sm"
-              type="text"
+              type="email"
             />
           </div>
-          <button
-            type="button"
-            className="rounded-lg w-full shadow border mb-4 border-gray-100 bg-yellow-300 hover:bg-yellow-500 px-2 py-1 mt-2 text-sm"
-          >
-            Continuar
-          </button>
+          <Link to="/">
+            <button
+              type="button"
+              className="rounded-lg w-full shadow border mb-4 border-gray-100 bg-yellow-300 hover:bg-yellow-500 px-2 py-1 mt-2 text-sm"
+            >
+              Continuar
+            </button>
+          </Link>
         </div>
         <div className="">
           <p className="text-xs text-left mb-8">
