@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const changeUserLoggedStatus = status => {
+const changeUserLoggedStatus = (status) => {
   localStorage.setItem('userLoggedIn', status);
-}
+};
 
 const Login = () => {
   const setUserLoggedIn = () => {
-    localStorage.setItem("userLoggedIn", true);
+    localStorage.setItem('userLoggedIn', true);
   };
 
   changeUserLoggedStatus(false);
