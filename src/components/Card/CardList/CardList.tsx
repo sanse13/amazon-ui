@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { environment } from '../../../environments/environment-dev';
 import CardItem from '../CardItem/CardItem';
+import React from 'react';
 
 const CardList = () => {
   const [products, setProducts] = useState([]);
