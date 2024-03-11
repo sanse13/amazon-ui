@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { environment } from '../../../environments/environment-dev';
+import CardItem from '../CardItem/CardItem';
 
 const CardList = () => {
   const [products, setProducts] = useState([]);
@@ -13,11 +14,7 @@ const CardList = () => {
 
   return (
     <div className="m-8">
-      <ul>
-        {products.map((product, index) => (
-          <li key={index}>{product.name}</li>
-        ))}
-      </ul>
+      <CardItem />
     </div>
   );
 };
