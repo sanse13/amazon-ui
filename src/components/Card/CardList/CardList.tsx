@@ -8,19 +8,17 @@ const CardList = () => {
   const fetchProducts = async () => {
     const fetchedProducts = await getAllProducts();
     setProducts(fetchedProducts);
-  }
-  
+  };
+
   useEffect(() => {
     fetchProducts();
   }, []);
 
   return (
     <div className="m-8 grid-cols-3">
-      {
-        products.map(product => (
-          <p>{product.name}</p>
-        ))
-      }
+      {products.map((product) => (
+        <p>{product.name}</p>
+      ))}
     </div>
   );
 };
