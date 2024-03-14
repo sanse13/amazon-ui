@@ -1,21 +1,26 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { environment } from '../../../environments/environment-dev';
-import CardItem from '../CardItem/CardItem';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getAllProducts } from '../../../services/product.service';
+import { Product } from '../../../shared/types';
 
 const CardList = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
+  const fetchProducts = async () => {
+    const fetchedProducts = await getAllProducts();
+    setProducts(fetchedProducts);
+  }
+  
   useEffect(() => {
-    axios.get(`${environment.apiUri}/product/products`).then((productsData) => {
-      setProducts(productsData.data);
-    });
+    fetchProducts();
   }, []);
 
   return (
-    <div className="m-8">
-      <CardItem />
+    <div className="m-8 grid-cols-3">
+      {
+        products.map(product => (
+          <p>{product.name}</p>
+        ))
+      }
     </div>
   );
 };

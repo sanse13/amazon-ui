@@ -11,15 +11,11 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
 export default function CardItem() {
-  const msg = () => {
-    console.log('hola');
-  };
-
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         action={
-          <IconButton aria-label="settings" onClick={msg}>
+          <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
