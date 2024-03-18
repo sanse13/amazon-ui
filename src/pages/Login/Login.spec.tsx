@@ -8,7 +8,7 @@ describe('Login component', () => {
     const { getByText } = render(
       <MemoryRouter>
         <Login />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     // Simula el clic en el botón "Continuar"

@@ -7,7 +7,7 @@ import React from 'react';
 
 const Toolbar = () => {
   return (
-    <div id='toolbar'>
+    <div id="toolbar">
       <nav className="border-gray-200 bg-black">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <img
