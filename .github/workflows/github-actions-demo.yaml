@@ -16,3 +16,13 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests and check coverage
+        run: |
+          npm run coverage
+          status=$?
+          if [ $status -ne 0 ]; then
+            echo "Some tests failed. Exiting with status code $status"
+            exit $status
+          fi
