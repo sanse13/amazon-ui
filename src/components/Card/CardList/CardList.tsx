@@ -16,8 +16,8 @@ const CardList = () => {
 
   return (
     <div className="m-8 grid-cols-3">
-      {products.map((product) => (
-        <p>{product.name}</p>
+      {products.map((product, index) => (
+        <p key={index}>{product.name}</p>
       ))}
     </div>
   );

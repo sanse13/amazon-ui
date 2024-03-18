@@ -1,5 +1,7 @@
+import React from 'react';
 import CardList from '../components/Card/CardList/CardList';
 import Toolbar from '../components/Toolbar/Toolbar';
+
 const Dashboard = () => {
   let userLoggedIn = localStorage.getItem('userLoggedIn');
   return (

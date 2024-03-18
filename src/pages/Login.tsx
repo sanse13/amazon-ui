@@ -1,15 +1,16 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const changeUserLoggedStatus = (status) => {
+const changeUserLoggedStatus = (status: string) => {
   localStorage.setItem('userLoggedIn', status);
 };
 
 const Login = () => {
   const setUserLoggedIn = () => {
-    localStorage.setItem('userLoggedIn', true);
+    localStorage.setItem('userLoggedIn', 'true');
   };
 
-  changeUserLoggedStatus(false);
+  changeUserLoggedStatus('false');
 
   return (
     <div className="flex flex-col items-center justify-center">
