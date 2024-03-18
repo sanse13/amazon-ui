@@ -1,5 +1,5 @@
-import { environment } from '../environments/environment-dev';
-import { Product } from '../shared/types';
+import { environment } from '../../environments/environment-dev';
+import { Product } from '../../shared/types';
 
 export const getAllProducts = async (): Promise<Product[]> => {
   const response = await fetch(`${environment.apiUri}/product/products`);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAllProducts } from '../../../services/product.service';
+import { getAllProducts } from '../../../services/product/product.service';
 import { Product } from '../../../shared/types';
 
 const CardList = () => {
