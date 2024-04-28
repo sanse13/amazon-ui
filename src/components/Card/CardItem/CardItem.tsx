@@ -10,31 +10,35 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-export default function CardItem() {
+interface CardItemProps {
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+}
+
+export default function CardItem(props: CardItemProps) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className="w-full">
       <CardHeader
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title="Garmin Epix Gen 2"
-        subheader=""
+        title={<span className="text-lg">{props.name}</span>}
+        subheader={`${props.price}€`}
       />
       <CardMedia
         component="img"
-        height="194"
-        image="default-product-image.jpeg"
-        alt="Default image product"
+        className="w-[10rem] h-[10rem]"
+        image={props.image}
+        alt="Default image photo"
+        sx={{ padding: '1em 1em 0 1em', objectFit: 'contain' }}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          El Garmin epix Gen 2 representa la evolución de la línea de relojes
-          inteligentes deportivos de Garmin, diseñado para atender las
-          necesidades de entusiastas del deporte y actividades al aire libre.
-          Este reloj cuenta con un GPS integrado que proporciona información
-          precisa sobre la ubicación y el rendimiento durante las actividades.
+          {props.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
