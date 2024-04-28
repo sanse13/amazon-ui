@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllProducts } from '../../../services/product/product.service';
 import { Product } from '../../../shared/types';
+import CardItem from '../CardItem/CardItem';
 
 const CardList = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -15,9 +16,15 @@ const CardList = () => {
   }, []);
 
   return (
-    <div className="m-8 grid-cols-3">
+    <div className="m-8 grid grid-cols-4 gap-8">
       {products.map((product, index) => (
-        <p key={index}>{product.name}</p>
+        <CardItem
+          key={index}
+          name={product.name}
+          description={product.description}
+          image={product.imageRef}
+          price={product.price}
+        />
       ))}
     </div>
   );

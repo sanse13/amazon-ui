@@ -11,8 +11,8 @@ jest.mock('../../../services/product/product.service.ts', () => ({
 describe('Card list', () => {
   it('renders products', async () => {
     const mockProducts: Product[] = [
-      { name: 'Product 1', price: 1 },
-      { name: 'Product 2', price: 2 },
+      { name: 'Product 1', price: 1, imageRef: '', description: '' },
+      { name: 'Product 2', price: 2, imageRef: '', description: '' },
     ];
     (getAllProducts as jest.Mock).mockResolvedValue(mockProducts);
 
