@@ -1,11 +1,39 @@
 import {
+  faCaretDown,
   faLocationDot,
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import { Fade, Menu, MenuItem } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../services/product/auth/auth.service';
 
 const Toolbar = () => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const fetchLogin = async () => {
+    const accessToken = await login();
+    sessionStorage.setItem('accessToken', accessToken);
+  };
+
+  useEffect(() => {
+    fetchLogin();
+  });
+
+  const logout = async () => {
+    navigate('login');
+    sessionStorage.removeItem('accessToken');
+  };
+
   return (
     <div id="toolbar">
       <nav className="border-gray-200 bg-black">
@@ -59,10 +87,31 @@ const Toolbar = () => {
             </div>
           </div>
           <div className="flex flex-row justify-between">
-            <div className="flex flex-col justify-between">
+            <div
+              className="flex flex-col justify-between mx-6"
+              onClick={handleClick}
+            >
               <span className="text-white text-xs">Hola Adrian</span>
-              <span className="text-white text-sm">Cuenta y listas</span>
+              <span className="text-white text-sm">
+                Cuenta y listas
+                <FontAwesomeIcon
+                  className="text-white ml-2"
+                  icon={faCaretDown}
+                />
+              </span>
             </div>
+            <Menu
+              id="fade-menu"
+              MenuListProps={{
+                'aria-labelledby': 'fade-button',
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              TransitionComponent={Fade}
+            >
+              <MenuItem onClick={logout}>Logout</MenuItem>
+            </Menu>
             <div className="flex flex-col justify-between mx-6">
               <span className="text-white text-xs">Devoluciones</span>
               <span className="text-white text-xs">y pedidos</span>
