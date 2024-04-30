@@ -1,6 +1,6 @@
 import { login } from './auth.service';
 
-jest.mock('../../../environments/environment-dev', () => ({
+jest.mock('./../../environments/environment-dev', () => ({
   environment: {
     apiUri: 'http://example.com/api',
   },
@@ -24,7 +24,10 @@ describe('login service', () => {
       text: () => Promise.resolve(mockResponseData),
     });
 
-    const accessToken = await login();
+    const accessToken = await login({
+      email: 'adrian@gmail.com',
+      password: 'casa',
+    });
 
     expect(accessToken).toBe(mockResponseData);
 
@@ -35,7 +38,7 @@ describe('login service', () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: 'test@test.test', password: 'casa' }),
+        body: JSON.stringify({ email: 'adrian@gmail.com', password: 'casa' }),
       },
     );
   });
@@ -45,6 +48,11 @@ describe('login service', () => {
       ok: false,
     });
 
-    await expect(login()).rejects.toThrow('Failed to login');
+    await expect(
+      login({
+        email: 'adrian@gmail.com',
+        password: 'casa',
+      }),
+    ).rejects.toThrow('Failed to login');
   });
 });

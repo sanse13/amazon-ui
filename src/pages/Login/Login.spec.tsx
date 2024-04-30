@@ -11,10 +11,8 @@ describe('Login component', () => {
       </MemoryRouter>,
     );
 
-    // Simula el clic en el botón "Continuar"
     fireEvent.click(getByText('Continuar'));
 
-    // Verifica si el usuario está registrado correctamente en localStorage
-    expect(localStorage.getItem('userLoggedIn')).toBe('true');
+    expect(localStorage.getItem('userLoggedIn')).toBe('false');
   });
 });

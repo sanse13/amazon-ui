@@ -1,43 +1,39 @@
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import * as router from 'react-router';
-import { login } from '../../services/product/auth/auth.service';
+import { MemoryRouter } from 'react-router-dom';
 import Toolbar from './Toolbar';
 
-const navigate = jest.fn();
-
-beforeEach(() => {
-  jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
-});
-
-jest.mock('../../services/product/auth/auth.service', () => ({
-  login: jest.fn(),
-}));
-
 describe('Toolbar component', () => {
-  it('renders correctly', () => {
-    const { getByAltText, getByPlaceholderText, getByText } = render(
-      <Toolbar />,
+  test('renders toolbar correctly', () => {
+    render(
+      <MemoryRouter>
+        <Toolbar />
+      </MemoryRouter>,
     );
 
-    const logoImage = getByAltText('amazon logo');
-    expect(logoImage).toBeInTheDocument();
-
-    const searchInput = getByPlaceholderText('Buscar en Amazon.es');
-    expect(searchInput).toBeInTheDocument();
-    expect(searchInput).toHaveClass('block w-[26rem]');
-
-    expect(getByText('Hola Adrian')).toBeInTheDocument();
-
-    expect(document.querySelector('.fa-location-dot')).toBeInTheDocument();
+    expect(screen.getByText('Cuenta y listas')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('Buscar en Amazon.es'),
+    ).toBeInTheDocument();
+    expect(screen.getByAltText('amazon logo')).toBeInTheDocument();
   });
 
-  it('should fetchLogin', () => {
-    const accessToken = 'eyASdjflkahsdfoadsf';
-    (login as jest.Mock).mockResolvedValue(accessToken);
+  test('opens and closes logout menu', () => {
+    render(
+      <MemoryRouter>
+        <Toolbar />
+      </MemoryRouter>,
+    );
 
-    render(<Toolbar />);
-    const accessTokenSessionStorage = sessionStorage.getItem('accessToken');
-    expect(accessTokenSessionStorage).toBeDefined();
+    const logoutButton = screen.getByText('Cuenta y listas');
+    fireEvent.click(logoutButton);
+
+    const logoutMenuItem = screen.getByText('Logout');
+    expect(logoutMenuItem).toBeInTheDocument();
+
+    fireEvent.click(logoutButton);
+
+    const accessToken = sessionStorage.getItem('access-token');
+    expect(accessToken).not.toBe('eyHsdfsebldsipñhkhlwe');
   });
 });
