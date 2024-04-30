@@ -5,9 +5,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Fade, Menu, MenuItem } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../services/product/auth/auth.service';
 
 const Toolbar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -20,18 +19,9 @@ const Toolbar = () => {
     setAnchorEl(null);
   };
 
-  const fetchLogin = async () => {
-    const accessToken = await login();
-    sessionStorage.setItem('accessToken', accessToken);
-  };
-
-  useEffect(() => {
-    fetchLogin();
-  });
-
   const logout = async () => {
+    sessionStorage.removeItem('access-token');
     navigate('login');
-    sessionStorage.removeItem('accessToken');
   };
 
   return (
