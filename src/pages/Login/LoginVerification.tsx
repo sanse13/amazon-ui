@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../services/auth/auth.service';
+import { UserService } from '../../services/user/user.service';
 
 export interface LoginVerificationProps {
   email: string;
@@ -8,6 +9,8 @@ export interface LoginVerificationProps {
 }
 
 const LoginVerification = (props: LoginVerificationProps) => {
+  const userService = new UserService();
+
   const changeEmail = () => {
     props.onValueChange('');
   };
@@ -34,6 +37,7 @@ const LoginVerification = (props: LoginVerificationProps) => {
       })
         .then((accessToken) => {
           sessionStorage.setItem('access-token', accessToken);
+          userService.getUserByEmail(props.email);
           navigate('/');
         })
         .catch(() => {

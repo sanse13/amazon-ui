@@ -6,11 +6,19 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Fade, Menu, MenuItem } from '@mui/material';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../reducers/userReducer';
+import { User } from '../../shared/types';
 
-const Toolbar = () => {
+interface ToolbarProps {
+  user: User | null;
+}
+
+const Toolbar = (props: ToolbarProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -19,9 +27,10 @@ const Toolbar = () => {
     setAnchorEl(null);
   };
 
-  const logout = async () => {
+  const logoutUser = async () => {
     sessionStorage.removeItem('access-token');
     navigate('login');
+    dispatch(logout());
   };
 
   return (
@@ -43,7 +52,9 @@ const Toolbar = () => {
               </li>
               <li>
                 <div className="flex flex-col justify-between">
-                  <span className="text-gray-300 text-xs">Enviar a Adrian</span>
+                  <span className="text-gray-300 text-xs">
+                    Enviar a {props.user?.name}
+                  </span>
                   <span className="text-white text-sm">Vitoria-G...</span>
                 </div>
               </li>
@@ -81,7 +92,9 @@ const Toolbar = () => {
               className="flex flex-col justify-between mx-6"
               onClick={handleClick}
             >
-              <span className="text-white text-xs">Hola Adrian</span>
+              <span className="text-white text-xs">
+                Hola {props.user?.name}
+              </span>
               <span className="text-white text-sm">
                 Cuenta y listas
                 <FontAwesomeIcon
@@ -100,7 +113,7 @@ const Toolbar = () => {
               onClose={handleClose}
               TransitionComponent={Fade}
             >
-              <MenuItem onClick={logout}>Logout</MenuItem>
+              <MenuItem onClick={logoutUser}>Logout</MenuItem>
             </Menu>
             <div className="flex flex-col justify-between mx-6">
               <span className="text-white text-xs">Devoluciones</span>
