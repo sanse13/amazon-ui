@@ -8,7 +8,6 @@ export const login = async (loginPayload: {
     email: loginPayload.email,
     password: loginPayload.password,
   });
-
   const response = await fetch(`${environment.apiUri}/auth/login`, {
     method: 'POST',
     headers: {
@@ -21,5 +20,6 @@ export const login = async (loginPayload: {
   }
 
   const data = await response.text();
+
   return data;
 };

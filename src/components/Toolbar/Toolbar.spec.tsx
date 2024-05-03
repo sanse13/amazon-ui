@@ -1,13 +1,18 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import { User } from '../../shared/types';
 import Toolbar from './Toolbar';
 
 describe('Toolbar component', () => {
+  const user: User = {
+    name: 'test',
+    email: 'test@test.test',
+  };
   test('renders toolbar correctly', () => {
     render(
       <MemoryRouter>
-        <Toolbar />
+        <Toolbar user={user} />
       </MemoryRouter>,
     );
 
@@ -21,7 +26,7 @@ describe('Toolbar component', () => {
   test('opens and closes logout menu', () => {
     render(
       <MemoryRouter>
-        <Toolbar />
+        <Toolbar user={user} />
       </MemoryRouter>,
     );
 
